@@ -8,6 +8,15 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  String changedText = 'GGEZ';
+  String normalText = 'Good game';
+
+  void _textHandler() {
+    setState(() {
+      normalText = changedText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +25,17 @@ class _AppState extends State<App> {
           title: Text('Assignment1'),
         ),
         body: Center(
-          child: Text('GG'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(normalText),
+              RaisedButton(
+                onPressed: _textHandler,
+                child: Text('Press me!'),
+              )
+            ],
+          ),
         ),
       ),
     );
