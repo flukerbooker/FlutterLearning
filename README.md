@@ -1,4 +1,7 @@
-# [![Flutter logo][]][flutter.dev]
+# FlutterLearning
+This repository has created for collecting an Flutter knowledge by Flutter & Dart - The Complete Guide [2021 Edition] from Udemy
+
+## [![Flutter logo][]][flutter.dev]
 
 [![Build Status - Cirrus][]][Build status]
 [![Gitter Channel][]][Gitter badge]
