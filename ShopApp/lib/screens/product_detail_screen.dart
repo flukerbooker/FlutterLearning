@@ -13,21 +13,35 @@ class ProductDetailScreen extends StatelessWidget {
     final productId = ModalRoute.of(context).settings.arguments as String;
     final loadedProduct = Provider.of<ProductsProvider>(context, listen: false)
         .findById(productId);
+    var top;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 300,
+            expandedHeight: 200,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(loadedProduct.title),
-              background: Hero(
-                tag: loadedProduct.id,
-                child: Image.network(
-                  loadedProduct.imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                top = constraints.biggest.height;
+                print(top);
+                return FlexibleSpaceBar(
+                  title: top < 110.14
+                      ? Text(loadedProduct.title)
+                      : Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 4, horizontal: 7),
+                          color: Colors.black54,
+                          child: Text(loadedProduct.title),
+                        ),
+                  background: Hero(
+                    tag: loadedProduct.id,
+                    child: Image.network(
+                      loadedProduct.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           SliverList(

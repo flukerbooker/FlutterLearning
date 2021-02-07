@@ -12,6 +12,7 @@ import './screens/edit_product_screen.dart';
 import './screens/auth_screen.dart';
 import './screens/splash_screen.dart';
 import './providers/auth.dart';
+import './helper/custom_route.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 Future main() async {
@@ -51,11 +52,14 @@ class MyApp extends StatelessWidget {
           builder: (ctx, auth, _) => MaterialApp(
               title: 'Flutter Demo',
               theme: ThemeData(
-                primarySwatch: Colors.purple,
-                accentColor: Colors.deepOrange,
-                fontFamily: 'Lato',
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
+                  primarySwatch: Colors.purple,
+                  accentColor: Colors.deepOrange,
+                  fontFamily: 'Lato',
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  pageTransitionsTheme: PageTransitionsTheme(builders: {
+                    TargetPlatform.android: CustomPageTransitionBuilder(),
+                    TargetPlatform.iOS: CustomPageTransitionBuilder(),
+                  })),
               home: auth.isAuth
                   ? ProductOverviewScreen()
                   : FutureBuilder(
